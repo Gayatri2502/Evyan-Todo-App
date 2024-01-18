@@ -1,32 +1,46 @@
 
-# todo_app
+# evyan_todo_app
 ### Table of contents
 - [System requirements](#system-requirements)
-- [Figma design guidelines for better UI accuracy](#figma-design-guideline-for-better-accuracy)
 - [Check the UI of the entire app](#app-navigations)
 - [Application structure](#project-structure)
-- [How to format your code?](#how-you-can-do-code-formatting)
-- [How you can improve code readability?](#how-you-can-improve-the-readability-of-code)
 - [Libraries and tools used](#libraries-and-tools-used)
-- [Support](#support)
 
 ### System requirements
 
 Dart SDK Version 2.18.0 or greater.
 Flutter SDK Version 3.3.0 or greater.
 
-### Figma design guidelines for better UI accuracy
-
-Read our guidelines to increase the accuracy of design-to-code conversion by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
-
 ### Check the UI of the entire app
 
 Check the UI of all the app screens from a single place by setting up the 'initialRoute'  to AppNavigation in the AppRoutes.dart file.
 
-### Application structure
+- [Splash screen]
+   The opening screen establishes an atmosphere for the program and greets users with a visually engaging interface.
 
-After successful build, your application structure should look like this:
+- [Login and Signup Screen]
+   Users can securely log in to their existing accounts or create new accounts to have access to customized features and data.
+
+- [Home Page]
+   The app's centre hub provides an instant summary of tasks, priorities, and upcoming activities.
+
+- [Profile Page/Personality Screen]
+   Users can personalize their profiles and gain insight into their task management personalities.
+
+- [Setting Screen]
+   A comprehensive settings page includes the Language Changing Page.
+    - Profile edits
+    - Terms and Conditions
+
+- [Add TODO Task Screen] - Calendar View: Visual representation of upcoming events.
+ The Task Management Screen categorizes tasks as 
+  - All
+  - In Progress
+  - On Hold 
+  - Completed.
+
+
+### Application structure
 
 ```
 .
@@ -52,17 +66,6 @@ After successful build, your application structure should look like this:
     └── widgets                     - It contains all custom widget classes
 ```
 
-### How to format your code?
-
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
-
-### How you can improve code readability?
-
-Resolve the errors and warnings that are shown in the application.
-
 ### Libraries and tools used
 
 - get - State management
@@ -74,6 +77,3 @@ Resolve the errors and warnings that are shown in the application.
 - cached_network_image - For storing internet image into cache
   https://pub.dev/packages/cached_network_image
 
-### Support
-
-If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
