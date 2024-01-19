@@ -10,7 +10,7 @@
 
 
     <application
-        android:label="todo_app"
+        android:label="Todo-App"
         android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
