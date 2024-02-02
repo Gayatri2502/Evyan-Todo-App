@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:todo_app/core/app_export.dart';
 import 'package:todo_app/presentation/calendar_screen/calendar_screen.dart';
+import 'package:todo_app/widgets/app_bar/custom_app_bar.dart';
 import 'package:todo_app/widgets/custom_elevated_button.dart';
 import 'package:todo_app/widgets/custom_icon_button.dart';
 
@@ -8,7 +10,7 @@ import 'controller/work_today_controller.dart';
 
 class WorkTodayScreen extends GetWidget<WorkTodayController> {
   WorkTodayScreen({Key? key}) : super(key: key);
-
+  GlobalKey<SliderDrawerState> dKey = GlobalKey<SliderDrawerState>();
   DateTime today = DateTime.now().toUtc();
   String formattedDate = "";
 
@@ -16,40 +18,54 @@ class WorkTodayScreen extends GetWidget<WorkTodayController> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-            body: SingleChildScrollView(
-      child: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(horizontal: 32.h, vertical: 43.v),
-          child: Column(children: [
-            CustomIconButton(
-                height: 24.adaptSize,
-                width: 24.adaptSize,
-                alignment: Alignment.centerLeft,
-                onTap: () {
-                  onTapBtnArrowLeft();
-                },
-                child: CustomImageView(
-                    imagePath: ImageConstant.imgArrowLeftBlack900)),
-            SizedBox(height: 1.v),
-            _buildPageHeader(),
-            SizedBox(height: 58.v),
-            _buildDate(),
-            SizedBox(height: 59.v),
-            _buildTodoFeatureItem("My Task", AppRoutes.myTaskScreen),
-            _buildTodoFeatureItem("Task Management", AppRoutes.taskViewsScreen),
-            _buildTodoFeatureItem(
-                "Working hours on Task ", AppRoutes.progressTimePicker),
-            _buildTodoFeatureItem(
-                "Prioritise your Task", AppRoutes.prioritiseScreen),
-            SizedBox(height: 96.v),
-            CustomElevatedButton(
-                text: "Create a new Task".tr,
-                buttonTextStyle: CustomTextStyles.titleMediumWhiteA700,
-                onPressed: () {
-                  Get.toNamed(AppRoutes.taskFormScreen);
-                }),
-            SizedBox(height: 5.v)
-          ])),
+            body: SliderDrawer(
+      isDraggable: false,
+      key: dKey,
+      animationDuration: 1000,
+
+      /// My AppBar
+      appBar: MyAppBar(
+        drawerKey: dKey,
+      ),
+
+      /// My Drawer Slider
+      slider: MySlider(),
+      child: SingleChildScrollView(
+        child: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(horizontal: 32.h, vertical: 3.v),
+            child: Column(children: [
+              // CustomIconButton(
+              //     height: 24.adaptSize,
+              //     width: 24.adaptSize,
+              //     alignment: Alignment.centerLeft,
+              //     onTap: () {
+              //       onTapBtnArrowLeft();
+              //     },
+              //     child: CustomImageView(
+              //         imagePath: ImageConstant.imgArrowLeftBlack900)),
+              SizedBox(height: 1.v),
+              _buildPageHeader(),
+              SizedBox(height: 58.v),
+              _buildDate(),
+              SizedBox(height: 59.v),
+              _buildTodoFeatureItem("My Task", AppRoutes.myTaskScreen),
+              _buildTodoFeatureItem(
+                  "Task Management", AppRoutes.taskViewsScreen),
+              _buildTodoFeatureItem(
+                  "Working hours on Task ", AppRoutes.progressTimePicker),
+              _buildTodoFeatureItem(
+                  "Prioritise your Task", AppRoutes.prioritiseScreen),
+              SizedBox(height: 56.v),
+              CustomElevatedButton(
+                  text: "Create a new Task".tr,
+                  buttonTextStyle: CustomTextStyles.titleMediumWhiteA700,
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.taskFormScreen);
+                  }),
+              SizedBox(height: 5.v)
+            ])),
+      ),
     )));
   }
 
